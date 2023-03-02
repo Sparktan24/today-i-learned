@@ -97,13 +97,16 @@ function createFactsList(dataArray) {
 
 // Toggle form visibility
 btn.addEventListener("click", function () {
-  if (form.classList.contains("hidden")) {
+  form.classList.contains("hidden")
+    ? (form.classList.toggle("hidden"), (btn.textContent = "Close"))
+    : (form.classList.toggle("hidden"), (btn.textContent = "Share a fact"));
+  /* if (form.classList.contains("hidden")) {
     form.classList.remove("hidden");
     btn.textContent = "Close";
   } else {
     form.classList.add("hidden");
     btn.textContent = "Share a fact";
-  }
+  } */
 });
 
 console.log([7, 64, 6, -23, 11].filter((el) => el > 10));
