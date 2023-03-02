@@ -1,4 +1,7 @@
 import "./style.css";
+import NewFactForm from "./components/NewFactForm";
+import CategoryFilter from "./components/CategoryFilter";
+import FactsList from "./components/FactsList";
 
 function App() {
   return (
@@ -26,18 +29,6 @@ function App() {
       </main>
     </>
   );
-}
-
-function NewFactForm() {
-  return <form className="fact-form">Fact Form</form>;
-}
-
-function CategoryFilter() {
-  return <aside>Category Filter</aside>;
-}
-
-function FactsList() {
-  return <section>Fact List</section>;
 }
 
 export default App;
