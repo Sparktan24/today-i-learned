@@ -2,8 +2,12 @@ import "./style.css";
 import NewFactForm from "./components/NewFactForm";
 import { CategoryFilter } from "./components/CategoryFilter";
 import FactsList from "./components/FactsList";
+import { useState } from "react";
 
 function App() {
+  // 1. DEFINE STATE VARIABLE
+  const [showForm, setShowForm] = useState(false);
+
   return (
     <>
       {/* HEADER */}
@@ -18,10 +22,17 @@ function App() {
           <h1>Today I Learned</h1>
         </div>
 
-        <button className="btn btn-large btn-open">Share a fact</button>
+        <button
+          className="btn btn-large btn-open"
+          //3. UPDATE STATE VARIABLE
+          onClick={() => setShowForm((state) => !state)}
+        >
+          Share a fact
+        </button>
       </header>
 
-      <NewFactForm />
+      {/* 2. USE STATE VARIABLE */}
+      {showForm ? <NewFactForm /> : null}
 
       <main className="main">
         <CategoryFilter />
