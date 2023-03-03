@@ -1,6 +1,6 @@
 import "./style.css";
 import NewFactForm from "./components/NewFactForm";
-import CategoryFilter from "./components/CategoryFilter";
+import { CategoryFilter } from "./components/CategoryFilter";
 import FactsList from "./components/FactsList";
 
 function App() {
