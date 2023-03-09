@@ -3,7 +3,8 @@ import Header from "./components/Header";
 import NewFactForm from "./components/NewFactForm";
 import { CategoryFilter } from "./components/CategoryFilter";
 import FactsList from "./components/FactsList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import supabase from "./components/supabase";
 
 const initialFacts = [
   {
@@ -41,16 +42,23 @@ const initialFacts = [
 
 function App() {
   const [showForm, setShowForm] = useState(false);
-  const [facts, setFacts] = useState(initialFacts);
+  const [facts, setFacts] = useState([]);
+
+  //  Run only once as soon as the component renders
+  useEffect(function () {
+    async function getFacts() {
+      const { data: facts, error } = await supabase.from("facts").select("*");
+      setFacts(facts);
+    }
+    getFacts();
+  }, []);
 
   return (
     <>
       <Header showForm={showForm} setShowForm={setShowForm} />
-
       {showForm ? (
         <NewFactForm setFacts={setFacts} setShowForm={setShowForm} />
       ) : null}
-
       <main className="main">
         <CategoryFilter />
         <FactsList facts={facts} />
