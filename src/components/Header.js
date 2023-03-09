@@ -1,4 +1,4 @@
-// CurrentState, Function to change state
+// CurrentState(Variable), Function to change state (Updater function)
 function Header({ showForm, setShowForm }) {
   return (
     <header className="header">
