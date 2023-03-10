@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Fact from "./Fact";
 
 function FactsList({ facts }) {

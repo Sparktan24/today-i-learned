@@ -10,24 +10,32 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [facts, setFacts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [currentCategory, setCurrentCategory] = useState("all");
 
   //  Run only once as soon as the component renders
-  useEffect(function () {
-    async function getFacts() {
-      setIsLoading(true);
-      const { data: facts, error } = await supabase
-        .from("facts")
-        .select("*")
-        .order("votesInteresting", { ascending: false })
-        .limit(1000);
+  useEffect(
+    function () {
+      async function getFacts() {
+        setIsLoading(true);
 
-      if (!error) setFacts(facts);
-      else alert("There was a problem getting data");
+        let query = supabase.from("facts").select("*");
+        //  console.log(currentCategory);
+        if (currentCategory !== "all")
+          query = query.eq("category", currentCategory);
 
-      setIsLoading(false);
-    }
-    getFacts();
-  }, []);
+        const { data: facts, error } = await query
+          .order("votesInteresting", { ascending: false })
+          .limit(1000);
+
+        if (!error) setFacts(facts);
+        else alert("There was a problem getting data");
+
+        setIsLoading(false);
+      }
+      getFacts();
+    },
+    [currentCategory]
+  ); //  When this value changes, the entire function will be executed again
 
   return (
     <>
@@ -36,7 +44,7 @@ function App() {
         <NewFactForm setFacts={setFacts} setShowForm={setShowForm} />
       ) : null}
       <main className="main">
-        <CategoryFilter />
+        <CategoryFilter setCurrentCategory={setCurrentCategory} />
         {isLoading ? <Loader /> : <FactsList facts={facts} />}
       </main>
     </>
