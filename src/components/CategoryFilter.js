@@ -1,4 +1,4 @@
-import Category from "./CategoryFilterElement";
+import Category from "./Category";
 
 const CATEGORIES = [
   { name: "technology", color: "#3b82f6" },
