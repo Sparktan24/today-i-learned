@@ -46,7 +46,7 @@ function NewFactForm({ setFacts, setShowForm }) {
       //  console.log("NewFact: ", newFact);
       //  4. Add the new fact object to the UI: add the fact to state
       //  Take out all elements of previous facts array and place them in the new array
-      setFacts((facts) => [newFact[0], ...facts]); //  fact added to supabase and local state
+      if (!error) setFacts((facts) => [newFact[0], ...facts]); //  fact added to supabase and local state
 
       //  5. Reset input fields (Already resets as default beheavior)
       /*       setText("");
