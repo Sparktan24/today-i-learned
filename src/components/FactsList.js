@@ -1,8 +1,6 @@
 import Fact from "./Fact";
 
 function FactsList({ facts, setFacts }) {
-  //TEMPORARY
-
   if (facts.length === 0)
     return (
       <p className="message">
